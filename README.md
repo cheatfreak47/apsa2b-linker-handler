@@ -19,6 +19,7 @@ Basically it registers a new URL type that when you click on it, runs a program 
 
 ## Description for APSA2B Linker JS
 ![Image of Linker in Action](https://raw.githubusercontent.com/cheatfreak47/apsa2b-linker-handler/main/APSA2BLinker.png)
+
 Lazily uses jquery to read the `archipelago://` from the page and makes a new link using the `apsa2b://` url that contains the same data, in the download field that is usually unused.
 
 ## Description for APSA2B Handler AHK

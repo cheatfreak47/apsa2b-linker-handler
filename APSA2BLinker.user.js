@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Archipelago SA2B Linker
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Add an apsa2b:// URL to be used with the URL handler program.
 // @author       CheatFreak
 // @match        https://archipelago.gg/room/*
@@ -30,7 +30,7 @@
                         // Replace the protocol in the href attribute
                         var href = link.attr('href').replace('archipelago://', 'apsa2b://');
                         // Replace the <td> contents with the new link
-                        td.html('<a href="' + href + '">Run Sonic Adventure 2 Battle Mod...</a>');
+                        td.html('<a href="' + href + '">Run SA2B Mod...</a>');
                     }
                 }
             }

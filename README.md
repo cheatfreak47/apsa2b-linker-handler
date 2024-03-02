@@ -19,11 +19,10 @@ So I made this. All the code is pretty well commented and clear about how it wor
  - Run `APSA2BHandler.exe` and click on Install to install the URL Handler.
  - That's it. To remove the URL Handler run the program again and choose Uninstall.
 
-## APSA2B Linker JS
+## Description for APSA2B Linker JS
 Lazily uses jquery to read the `archipelago://` from the page and makes a new link using the `apsa2b://` url that contains the same data, in the download field that is usually unused.
 
-## APSA2B Handler AHK Script
-
+## Description for APSA2B Handler AHK
 - Must be compiled with ahk2exe with [AutoHotKey 1.1](https://www.autohotkey.com/download/ahk-install.exe) to be used because you cannot associate an ahk script with a url, only an executable file
 - has an install/uninstall button for the URL handler when ran on it's own for easy install/uninstall
 - updates the SA2B_Archipelago config.ini file with the needed data

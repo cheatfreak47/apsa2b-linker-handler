@@ -28,13 +28,17 @@ if (A_Args[1] = "install") {
     MsgBox, 64, APSA2B URL Handler, URL Handler for "apsa2b://" installed successfully.
     ExitApp
 } else if (A_Args[1] = "uninstall") {
-    ; Uninstall the Registry Class for the URL entirely. This deletes all subkeys we made as well and effectively unregisters the URL Handler.
+    ; Uninstall the Registry Class for the URL entirely. This deletes all sub-keys we made as well and effectively unregistering the URL Handler.
 	RegDelete, HKEY_CLASSES_ROOT, apsa2b
     MsgBox, 64, APSA2B URL Handler, URL Handler for "apsa2b://" uninstalled successfully.
     ExitApp
 } else {
-    ; if neither install or uninstall was specified, but there is an arguement, we assume it is being launched as the URL Handler and process the URL for it's data, which are being stored in variables.
+    ; if neither install or uninstall was specified, but there is an argument, we assume it is being launched as the URL Handler and process the URL for it's data, which are being stored in variables.
 	URL := A_Args[1]
+	if (InStr(URL, "apsa2b://") = 0) {
+    MsgBox, 48, Error, Invalid argument. This program only accepts Install, Uninstall, or a valid apsa2b:// url as an argument.
+    ExitApp
+	}
     StringReplace, URL, URL, apsa2b://, , All
     StringSplit, Components, URL, :@/
     SlotName := Components1
@@ -42,6 +46,10 @@ if (A_Args[1] = "install") {
     Password := Components2 = "None" ? "" : Components2
     ServerURL := Components3
     ServerPort := Components4
+	if (SlotName = "" or ServerURL = "" or ServerPort = "") {
+    MsgBox, 48, Error, Invalid apsa2b URL.
+    ExitApp
+	}
     ; Read the install location for SA2B from the registry
 	RegRead, SA2BInstall, HKEY_LOCAL_MACHINE, SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 213610, InstallLocation
 	; If the install location is blank, unfortunately the only real solution is to throw an error and instruct the user to uninstall the game from Steam and Reinstall the game from Steam. Sometimes the Regkey is cleared when the game is moved from one drive to another and there's no way to reconcile this other than a clean reinstall.

@@ -24,8 +24,10 @@ Lazily uses jquery to read the `archipelago://` from the page and makes a new li
 
 ## Description for APSA2B Handler AHK
 ![Image of URL Handler](https://raw.githubusercontent.com/cheatfreak47/apsa2b-linker-handler/main/APSA2BHandler.png)
-- Must be compiled with ahk2exe with [AutoHotKey 1.1](https://www.autohotkey.com/download/ahk-install.exe) to be used because you cannot associate an ahk script with a url, only an executable file
-- has an install/uninstall button for the URL handler when ran on it's own for easy install/uninstall
-- updates the SA2B_Archipelago config.ini file with the needed data
-- launches the text client for you
-- launches the game for you
+ - Must be compiled with ahk2exe with [AutoHotKey 1.1](https://www.autohotkey.com/download/ahk-install.exe) to be used because you cannot associate an ahk script with a url, only an executable file.
+ - If you use ahk2exe manually to compile, you can customize the icon like the release version to use the `icon.ico` from `C:\ProgramData\Archipelago\Data\`.
+ - has an install/uninstall button for the URL handler when ran on it's own for easy install/uninstall
+ - has some very basic error handling
+ - updates the SA2B_Archipelago config.ini file with the needed data passed by the clicked url
+ - launches the text client for you
+ - launches the game for you

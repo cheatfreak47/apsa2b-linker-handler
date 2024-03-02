@@ -2,11 +2,9 @@
 
 Listen here. 
 
-I'm lazy and don't wanna open SA2 Mod Loader every time. I wanna click a button and it just goes.
+I'm lazy and don't wanna open SA2 Mod Loader every time. I wanna click a button and it all just does it for me.
 
-So I made this. All the code is pretty well commented and clear about how it works, feel free to explore it if you're apprehensive about using it.
-
-**This is not officially supported or anything like that, I just share the things I write in case someone else may find it useful or something. Use if you wanna but don't go asking anyone for help or bothering anyone if you can't get it to work. The only place you should ask for help is in the issues section on this github page. Got it?**
+So I made this. All the code is pretty well commented and clear about how it works, but do note it's obviously not official or officially supported or anything. Don't go bothering anyone but me in the issues section about it.
 
 # Usage:
  - Install [Sonic Adventure 2 from Steam](https://store.steampowered.com/app/213610/Sonic_Adventure_2/)
@@ -26,4 +24,5 @@ Lazily uses jquery to read the `archipelago://` from the page and makes a new li
 - Must be compiled with ahk2exe with [AutoHotKey 1.1](https://www.autohotkey.com/download/ahk-install.exe) to be used because you cannot associate an ahk script with a url, only an executable file
 - has an install/uninstall button for the URL handler when ran on it's own for easy install/uninstall
 - updates the SA2B_Archipelago config.ini file with the needed data
-- launches the text client for you too
+- launches the text client for you
+- launches the game for you

@@ -1,12 +1,14 @@
 // ==UserScript==
-// @name         Archipelago SA2B Instant Launch Linker
+// @name         Archipelago SA2B Linker
 // @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  Add an instant launch command for SA2B AP games to be used with the URL handler program.
+// @version      1.1
+// @description  Add an apsa2b:// URL to be used with the URL handler program.
 // @author       CheatFreak
 // @match        https://archipelago.gg/room/*
 // @grant        none
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js
+// @downloadURL  https://raw.githubusercontent.com/cheatfreak47/apsa2b-linker-handler/main/APSA2BLinker.user.js
+// @updateURL    https://raw.githubusercontent.com/cheatfreak47/apsa2b-linker-handler/main/APSA2BLinker.user.js
 // ==/UserScript==
 
 (function() {
@@ -28,7 +30,7 @@
                         // Replace the protocol in the href attribute
                         var href = link.attr('href').replace('archipelago://', 'apsa2b://');
                         // Replace the <td> contents with the new link
-                        td.html('<a href="' + href + '">Launch SA2B Game</a>');
+                        td.html('<a href="' + href + '">Run Sonic Adventure 2 Battle Mod...</a>');
                     }
                 }
             }

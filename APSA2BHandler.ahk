@@ -42,12 +42,12 @@ if (A_Args[1] = "install") {
     StringReplace, URL, URL, apsa2b://, , All
     StringSplit, Components, URL, :@/
     SlotName := Components1
-	; if the password is "None" this literally means no password and we should purposely blank it.
+	; if the password is "None" this literally means no password and we should purposely blank it. Side note, this is really stupid and they should have done this differently.
     Password := Components2 = "None" ? "" : Components2
     ServerURL := Components3
     ServerPort := Components4
 	if (SlotName = "" or ServerURL = "" or ServerPort = "" or ServerPort = "0") {
-    MsgBox, 48, Error, Invalid apsa2b URL. Try refreshing the page.
+    MsgBox, 48, Error, Invalid apsa2b URL.`nTry refreshing the page or updating the APSA2B Linker userscript.
     ExitApp
 	}
     ; Read the install location for SA2B from the registry
@@ -59,38 +59,49 @@ if (A_Args[1] = "install") {
 	}
 	; This next section updates the SA2B_Archipelago mod's config.ini with the necessary data to launch the game with the server, slot, and password specified in the URL.
 	; Define the path to the config.ini file
-	ConfigFile := SA2BInstall . "\mods\SA2B_Archipelago\config.ini"
+	APConfigFile := SA2BInstall . "\mods\SA2B_Archipelago\config.ini"
+	; Check if the mod config file exists
+	if !FileExist(APConfigFile)
+	{
+		MsgBox, 48, Error, Your SA2B_Archipelago Mod or SA2 Mod Loader may not be installed correctly. Please ensure you set up the SA2 Mod Loader and SA2B_Archipelago Mod correctly.
+		ExitApp
+	}
 	; Clear the [AP] section from the INI file
-	IniDelete, %ConfigFile%, AP
+	IniDelete, %APConfigFile%, AP
 	; Write the new data to the INI file using our nicely defined variables
-	IniWrite, %ServerURL%:%ServerPort%, %ConfigFile%, AP, IP
-	IniWrite, %SlotName%, %ConfigFile%, AP, PlayerName
+	IniWrite, %ServerURL%:%ServerPort%, %APConfigFile%, AP, IP
+	IniWrite, %SlotName%, %APConfigFile%, AP, PlayerName
 	; If Password is not blank, write it to the INI file, if it is, simply skip this step
 	if (Password != "") {
-		IniWrite, %Password%, %ConfigFile%, AP, Password
+		IniWrite, %Password%, %APConfigFile%, AP, Password
 	}
 	; This line is a debug line I've commented out. It just prints the variables to a text box. It was used to validate that we can read the data correctly from all the required locations.
-	;MsgBox, Slot Name: %SlotName%`nPassword: %Password%`nServer URL: %ServerURL%`nServer Port: %ServerPort%`nInstall: %SA2BInstall%`nConfig: %ConfigFile%
+	;MsgBox, Slot Name: %SlotName%`nPassword: %Password%`nServer URL: %ServerURL%`nServer Port: %ServerPort%`nInstall: %SA2BInstall%`nConfig: %APConfigFile%
 	; Next we set our working directory to the install folder for SA2B because if we don't SA2B will crash.
 	SetWorkingDir, %SA2BInstall%
+	; This part here took me a while to actually get working for some reason. I wouldn't normally define extra variables like this but it just wouldn't work otherwise for whatever reason.
+	; Define the path to the SA2ModLoader Config
+	MLConfigFile := SA2BInstall . "\mods\SA2ModLoader.ini"
+	; Check if the mod loader config file exists before we run anything
+	if (FileExist(MLConfigFile)) {
+		; read the file into a variable
+		FileRead, MLConfig, %MLConfigFile%
+		;MsgBox % MLConfig ; debug file content loading because it wouldn't work so many times for some reason
+	}
+	else {
+		; This acts as a sanity check for the SA2 Mod Loader install, it's possible someone could be an idiot and install just the AP mod somehow
+		MsgBox, 48, Error, Your SA2 Mod Loader is not configured or does not exist. Please ensure your SA2 Mod Loader is set up correctly.
+		ExitApp
+	}
 	; We check if there is a password and launch the text client accordingly, again using our variables.
 	if (Password != "") {
 		Run, "archipelago://%SlotName%:%Password%@%ServerURL%:%ServerPort%"
 	}
 	else {
-		Run, "archipelago://%SlotName%:None@%ServerURL%:%ServerPort%"
-	}
-	; This part here took me a while to actually get working for some reason. I wouldn't normally define extra variables like this but it just wouldn't work otherwise for whatever reason. ?_?
-	; Define the path to the SA2ModLoader Config
-	SA2MLConfig := SA2BInstall . "\mods\SA2ModLoader.ini"
-	; Check if the file exists
-	if (FileExist(SA2MLConfig)) {
-		; read the file into a variable
-		FileRead, SA2MLContent, %SA2MLConfig%
-		;MsgBox % SA2MLContent ; Debug variable content
+		Run, "archipelago://%SlotName%:None@%ServerURL%:%ServerPort%"; Side note, again it is so dumb that we have to do this
 	}
 	; Check if the mod is loaded
-	if (InStr(SA2MLContent, "SA2B_Archipelago"))
+	if (InStr(MLConfig, "SA2B_Archipelago"))
 	{
 		; We run the game and then exit the script.
 		Run, "%SA2BInstall%\sonic2app.exe"
@@ -98,7 +109,7 @@ if (A_Args[1] = "install") {
 	} 
 	else
 	{
-		; if the Config is not loading SA2B_Archipelago, then the user has to do that for the mod to work. I don't want to touch the loader ini with my code any more than necessary so this is what we do.
+		; If the Config is not loading SA2B_Archipelago, then the user has to do that for the mod to work so we launch into the Mod Manager instead.
 		MsgBox, 48, Notice, Your SA2 Mod Loader doesn't seem to be set up to run the SA2B_Archipelago mod.`nPlease enable the SA2B_Archipelago mod in your SA2 Mod Manager and then click Save & Play.
 		Run, "%SA2BInstall%\SA2ModManager.exe"
 		ExitApp

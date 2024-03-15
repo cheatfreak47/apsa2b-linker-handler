@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Archipelago SA2B Linker
 // @namespace    http://tampermonkey.net/
-// @version      1.3
+// @version      1.4
 // @description  Add an apsa2b:// URL to be used with the URL handler program.
 // @author       CheatFreak
 // @match        https://archipelago.gg/room/*

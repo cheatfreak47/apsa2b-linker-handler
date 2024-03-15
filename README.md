@@ -23,15 +23,17 @@ Basically it registers a new URL type that when you click on it, runs a program 
 
 ## Description for APSA2B Linker JS
 ![Image of Linker in Action](https://raw.githubusercontent.com/cheatfreak47/apsa2b-linker-handler/main/APSA2BLinker.png)
-
-Lazily uses jquery to read the `archipelago://` from the page and makes a new link using the `apsa2b://` url that contains the same data, in the download field that is usually unused.
+ - A fairly basic userscript that should work with all userscript browser extensions
+ - lazily uses jquery to read the `archipelago://` from the page and makes a new link using the `apsa2b://` url that contains the same data, in the download field that is usually unused for Sonic Adventure 2 Battle games
+ - refreshes for you if the archipelago links are directing to port 0, which happens sometimes when you have fast internet
 
 ## Description for APSA2B Handler AHK
 ![Image of URL Handler](https://raw.githubusercontent.com/cheatfreak47/apsa2b-linker-handler/main/APSA2BHandler.png)
- - Must be compiled with ahk2exe from [AutoHotKey 1.1](https://www.autohotkey.com/download/ahk-install.exe) to be used because you cannot associate an ahk script with a url, only an executable file.
- - If you use ahk2exe manually to compile, you can customize the icon like the release version to use the `icon.ico` from `C:\ProgramData\Archipelago\Data\`. My build script also does this.
+ - must be compiled with ahk2exe from [AutoHotKey 1.1](https://www.autohotkey.com/download/ahk-install.exe) to be used because you cannot associate an ahk script with a url, only an executable file.
+ - if you use ahk2exe manually to compile, you can customize the icon like the release version to use the `icon.ico` from `C:\ProgramData\Archipelago\Data\`. My build script also does this.
  - has an install/uninstall button for the URL handler when ran on it's own for easy install/uninstall
  - has some very basic error handling
  - updates the SA2B_Archipelago config.ini file with the needed data passed by the clicked url
  - launches the text client for you
- - launches the game for you
+ - checks if the mod is enabled and opens the mod manager for you if it isn't
+ - launches the game for you if the mod is already enabled

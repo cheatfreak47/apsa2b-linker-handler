@@ -1,4 +1,4 @@
-; APSA2B URL Handler 1.0.1 by CheatFreak
+; APSA2B URL Handler 1.0.2 by CheatFreak
 ; Specify some script settings to ensure it is running as it should.
 #NoEnv
 #NoTrayIcon
@@ -80,9 +80,29 @@ if (A_Args[1] = "install") {
 	else {
 		Run, "archipelago://%SlotName%:None@%ServerURL%:%ServerPort%"
 	}
-	; We run the game and then exit the script.
-	Run, "%SA2BInstall%\sonic2app.exe"
-	ExitApp
+	; This part here took me a while to actually get working for some reason. I wouldn't normally define extra variables like this but it just wouldn't work otherwise for whatever reason. ?_?
+	; Define the path to the SA2ModLoader Config
+	SA2MLConfig := SA2BInstall . "\mods\SA2ModLoader.ini"
+	; Check if the file exists
+	if (FileExist(SA2MLConfig)) {
+		; read the file into a variable
+		FileRead, SA2MLContent, %SA2MLConfig%
+		;MsgBox % SA2MLContent ; Debug variable content
+	}
+	; Check if the mod is loaded
+	if (InStr(SA2MLContent, "SA2B_Archipelago"))
+	{
+		; We run the game and then exit the script.
+		Run, "%SA2BInstall%\sonic2app.exe"
+		ExitApp
+	} 
+	else
+	{
+		; if the Config is not loading SA2B_Archipelago, then the user has to do that for the mod to work. I don't want to touch the loader ini with my code any more than necessary so this is what we do.
+		MsgBox, 48, Notice, Your SA2 Mod Loader doesn't seem to be set up to run the SA2B_Archipelago mod.`nPlease enable the SA2B_Archipelago mod in your SA2 Mod Manager and then click Save & Play.
+		Run, "%SA2BInstall%\SA2ModManager.exe"
+		ExitApp
+	}
 }
 
 ; If Install is clicked we rerun with the install argument

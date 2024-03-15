@@ -1,4 +1,4 @@
-; APSA2B URL Handler 1.0 by CheatFreak
+; APSA2B URL Handler 1.0.1 by CheatFreak
 ; Specify some script settings to ensure it is running as it should.
 #NoEnv
 #NoTrayIcon
@@ -46,8 +46,8 @@ if (A_Args[1] = "install") {
     Password := Components2 = "None" ? "" : Components2
     ServerURL := Components3
     ServerPort := Components4
-	if (SlotName = "" or ServerURL = "" or ServerPort = "") {
-    MsgBox, 48, Error, Invalid apsa2b URL.
+	if (SlotName = "" or ServerURL = "" or ServerPort = "" or ServerPort = "0") {
+    MsgBox, 48, Error, Invalid apsa2b URL. Try refreshing the page.
     ExitApp
 	}
     ; Read the install location for SA2B from the registry

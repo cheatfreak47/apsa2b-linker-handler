@@ -27,7 +27,7 @@
                     // Extract the port number from the href attribute
                     var port = link.attr('href').split(':').pop();
                     // Check if the port number is 0
-                    if (port !== '0') {
+                    if (port === '0') {
                         // Wait 5 seconds before refreshing the page
                         setTimeout(function() {
                             location.reload();

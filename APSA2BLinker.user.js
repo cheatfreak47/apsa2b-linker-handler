@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Archipelago SA2B Linker
 // @namespace    http://tampermonkey.net/
-// @version      1.4
+// @version      1.5
 // @description  Add an apsa2b:// URL to be used with the URL handler program.
 // @author       CheatFreak
 // @match        https://archipelago.gg/room/*
@@ -28,7 +28,7 @@
                     var port = link.attr('href').split(':').pop();
                     // Check if the port number is 0
                     if (port === '0') {
-                        // Wait 5 seconds before refreshing the page
+                        // Wait 3 seconds before refreshing the page
                         setTimeout(function() {
                             location.reload();
                         }, 3000);

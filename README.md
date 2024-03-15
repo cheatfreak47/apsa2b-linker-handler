@@ -13,7 +13,7 @@ So I made this. All the code is pretty well commented and clear about how it wor
  - Set up the [SA2B Archipelago Mod](https://archipelago.gg/tutorial/Sonic%20Adventure%202%20Battle/setup/en)
  - Install your favorite userscript extension on your default browser. (examples include: Tampermonkey, Violentmonkey, Greasemonkey, Firemonkey, etc) My favorite is [FireMonkey on Firefox](https://addons.mozilla.org/en-US/firefox/addon/firemonkey/).
  - Install the [userscript](https://raw.githubusercontent.com/cheatfreak47/apsa2b-linker-handler/main/APSA2BLinker.user.js) from this repo.
- - Download the and un7z the [compiled release](https://github.com/cheatfreak47/apsa2b-linker-handler/releases) or compile `APSA2BHandler.ahk` from the repository yourself.
+ - Download and un7z the [compiled release](https://github.com/cheatfreak47/apsa2b-linker-handler/releases) or compile `APSA2BHandler.ahk` from the repository yourself.
  - Take the resulting `APSA2BHandler.exe` and put it in the Sonic Adventure 2 install folder or the Archipelago install folder.
  - Run `APSA2BHandler.exe` and click on Install to install the URL Handler.
  - That's it. To remove the URL Handler run the program again and choose Uninstall.

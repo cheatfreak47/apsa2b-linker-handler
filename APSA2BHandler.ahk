@@ -1,4 +1,4 @@
-; APSA2B URL Handler 1.0.2 by CheatFreak
+; APSA2B URL Handler 1.0.3 by CheatFreak
 ; Specify some script settings to ensure it is running as it should.
 #NoEnv
 #NoTrayIcon
@@ -52,9 +52,13 @@ if (A_Args[1] = "install") {
 	}
     ; Read the install location for SA2B from the registry
 	RegRead, SA2BInstall, HKEY_LOCAL_MACHINE, SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 213610, InstallLocation
-	; If the install location is blank, unfortunately the only real solution is to throw an error and instruct the user to uninstall the game from Steam and Reinstall the game from Steam. Sometimes the Regkey is cleared when the game is moved from one drive to another and there's no way to reconcile this other than a clean reinstall.
-	if (SA2BInstall = "") {
-    MsgBox, 48, Error, Sonic Adventure 2 Battle installation location not found in the registry. Please uninstall and reinstall Sonic Adventure 2 via Steam.
+	; If a working location wasn't found from Steam's uninstall record, check another possible key that may contain a working path.
+	if (SA2BInstall = "") or (!FileExist(SA2BInstall)) {
+	RegRead, SA2BInstall, HKEY_LOCAL_MACHINE, SOFTWARE\WOW6432Node\sega\sonicad2, install_path
+	}
+	; If the install location is still blank, unfortunately the only real solution is to throw an error and instruct the user to uninstall the game from Steam and Reinstall the game from Steam. Sometimes the Regkey is cleared or not updated properly to resolve to the actual location when the game is moved from one drive to another and there's no way to reconcile this other than a clean reinstall.
+	if (SA2BInstall = "") or (!FileExist(SA2BInstall)) {
+    MsgBox, 48, Error, A working Sonic Adventure 2 Battle installation location was not found in the registry.`n`nSometimes this happens if you've moved the install from one drive to another, or if the game was copied from another computer.`n`nTo fix this, try running the game again from Steam, or backup your mods folder and uninstall and reinstall the game again via Steam. Then set up a fresh copy of the Mod Manager, and restore your mods folder backup.`n`nIf none of this resolves it, please report it on the Github Issue tracker.
     ExitApp
 	}
 	; This next section updates the SA2B_Archipelago mod's config.ini with the necessary data to launch the game with the server, slot, and password specified in the URL.

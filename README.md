@@ -10,7 +10,8 @@ So I made this. All the code is pretty well commented and clear about how it wor
 # Usage:
  - Install [Sonic Adventure 2 from Steam](https://store.steampowered.com/app/213610/Sonic_Adventure_2/)
  - Install [Archipelago](https://archipelago.gg)
- - Set up the [SA2B Archipelago Mod](https://archipelago.gg/tutorial/Sonic%20Adventure%202%20Battle/setup/en)
+ - Set up the [SA2 Mod Loader](https://mm.reimuhakurei.net/sa2mods/SA2ModLoader.7z). At the moment, the new SA Mod Manager is not yet supported.
+ - Set up the [SA2B Archipelago Mod](https://archipelago.gg/tutorial/Sonic%20Adventure%202%20Battle/setup/en). Don't forget to run the batch file included with the mod.
  - Install your favorite userscript extension on your default browser. (examples include: Tampermonkey, Violentmonkey, Greasemonkey, Firemonkey, etc) My favorite is [FireMonkey on Firefox](https://addons.mozilla.org/en-US/firefox/addon/firemonkey/).
  - Install the [userscript](https://raw.githubusercontent.com/cheatfreak47/apsa2b-linker-handler/main/APSA2BLinker.user.js) from this repo.
  - Download and un7z the [compiled release](https://github.com/cheatfreak47/apsa2b-linker-handler/releases) or compile `APSA2BHandler.ahk` from the repository yourself.

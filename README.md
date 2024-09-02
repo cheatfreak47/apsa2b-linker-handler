@@ -10,7 +10,7 @@ So I made this. All the code is pretty well commented and clear about how it wor
 # Usage:
  - Install [Sonic Adventure 2 from Steam](https://store.steampowered.com/app/213610/Sonic_Adventure_2/)
  - Install [Archipelago](https://archipelago.gg)
- - Set up the [SA2 Mod Loader](https://mm.reimuhakurei.net/sa2mods/SA2ModLoader.7z). At the moment, the new SA Mod Manager is not yet supported.
+ - Set up the [SA2 Mod Loader](https://mm.reimuhakurei.net/sa2mods/SA2ModLoader.7z) or [SA Mod Manager](https://github.com/X-Hax/SA-Mod-Manager/releases/latest)
  - Set up the [SA2B Archipelago Mod](https://archipelago.gg/tutorial/Sonic%20Adventure%202%20Battle/setup/en). Don't forget to run the batch file included with the mod.
  - Install your favorite userscript extension on your default browser. (examples include: Tampermonkey, Violentmonkey, Greasemonkey, Firemonkey, etc) My favorite is [FireMonkey on Firefox](https://addons.mozilla.org/en-US/firefox/addon/firemonkey/).
  - Install the [userscript](https://raw.githubusercontent.com/cheatfreak47/apsa2b-linker-handler/main/APSA2BLinker.user.js) from this repo.
@@ -36,5 +36,5 @@ Basically it registers a new URL type that when you click on it, runs a program 
  - has some very basic error handling
  - updates the SA2B_Archipelago config.ini file with the needed data passed by the clicked url
  - launches the text client for you
- - checks if the mod is enabled and opens the mod manager for you if it isn't
- - launches the game for you if the mod is already enabled
+ - ~~checks if the mod is enabled and opens the mod manager for you if it isn't~~ See Issue #1/#2
+ - launches the game for you ~~if the mod is already enabled~~ See Issue #1/#2

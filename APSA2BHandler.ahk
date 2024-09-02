@@ -1,4 +1,4 @@
-; APSA2B URL Handler 1.0.3 by CheatFreak
+; APSA2B URL Handler 1.0.4 by CheatFreak
 ; Specify some script settings to ensure it is running as it should.
 #NoEnv
 #NoTrayIcon

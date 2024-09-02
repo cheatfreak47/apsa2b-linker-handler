@@ -85,18 +85,18 @@ if (A_Args[1] = "install") {
 	SetWorkingDir, %SA2BInstall%
 	; This part here took me a while to actually get working for some reason. I wouldn't normally define extra variables like this but it just wouldn't work otherwise for whatever reason.
 	; Define the path to the SA2ModLoader Config
-	MLConfigFile := SA2BInstall . "\mods\SA2ModLoader.ini"
+	;MLConfigFile := SA2BInstall . "\mods\SA2ModLoader.ini"
 	; Check if the mod loader config file exists before we run anything
-	if (FileExist(MLConfigFile)) {
+	;if (FileExist(MLConfigFile)) {
 		; read the file into a variable
-		FileRead, MLConfig, %MLConfigFile%
+	;	FileRead, MLConfig, %MLConfigFile%
 		;MsgBox % MLConfig ; debug file content loading because it wouldn't work so many times for some reason
-	}
-	else {
+	;}
+	;else {
 		; This acts as a sanity check for the SA2 Mod Loader install, it's possible someone could be an idiot and install just the AP mod somehow
-		MsgBox, 48, Error, Your SA2 Mod Loader is not configured or does not exist. Please ensure your SA2 Mod Loader is set up correctly.
-		ExitApp
-	}
+	;	MsgBox, 48, Error, Your SA2 Mod Loader is not configured or does not exist. Please ensure your SA2 Mod Loader is set up correctly.
+	;	ExitApp
+	;}
 	; We check if there is a password and launch the text client accordingly, again using our variables.
 	if (Password != "") {
 		Run, "archipelago://%SlotName%:%Password%@%ServerURL%:%ServerPort%"
@@ -105,19 +105,19 @@ if (A_Args[1] = "install") {
 		Run, "archipelago://%SlotName%:None@%ServerURL%:%ServerPort%"; Side note, again it is so dumb that we have to do this
 	}
 	; Check if the mod is loaded
-	if (InStr(MLConfig, "SA2B_Archipelago"))
-	{
+	;if (InStr(MLConfig, "SA2B_Archipelago"))
+	;{
 		; We run the game and then exit the script.
 		Run, "%SA2BInstall%\sonic2app.exe"
 		ExitApp
-	} 
-	else
-	{
+	;} 
+	;else
+	;{
 		; If the Config is not loading SA2B_Archipelago, then the user has to do that for the mod to work so we launch into the Mod Manager instead.
-		MsgBox, 48, Notice, Your SA2 Mod Loader doesn't seem to be set up to run the SA2B_Archipelago mod.`nPlease enable the SA2B_Archipelago mod in your SA2 Mod Manager and then click Save & Play.
-		Run, "%SA2BInstall%\SA2ModManager.exe"
-		ExitApp
-	}
+	;	MsgBox, 48, Notice, Your SA2 Mod Loader doesn't seem to be set up to run the SA2B_Archipelago mod.`nPlease enable the SA2B_Archipelago mod in your SA2 Mod Manager and then click Save & Play.
+	;	Run, "%SA2BInstall%\SA2ModManager.exe"
+;		ExitApp
+	;}
 }
 
 ; If Install is clicked we rerun with the install argument

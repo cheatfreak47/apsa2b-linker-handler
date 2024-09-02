@@ -36,5 +36,5 @@ Basically it registers a new URL type that when you click on it, runs a program 
  - has some very basic error handling
  - updates the SA2B_Archipelago config.ini file with the needed data passed by the clicked url
  - launches the text client for you
- - ~~checks if the mod is enabled and opens the mod manager for you if it isn't~~ See Issue #1/#2
- - launches the game for you ~~if the mod is already enabled~~ See Issue #1/#2
+ - ~~checks if the mod is enabled and opens the mod manager for you if it isn't~~ See [Issue 2](https://github.com/cheatfreak47/apsa2b-linker-handler/issues/2)
+ - launches the game for you ~~if the mod is already enabled~~ See [Issue 2](https://github.com/cheatfreak47/apsa2b-linker-handler/issues/2)
